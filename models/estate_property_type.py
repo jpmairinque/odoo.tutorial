@@ -8,12 +8,17 @@ class EstatePropertyType(models.Model):
     name = fields.Char(string="Type",required=True)
     property_ids = fields.One2many("estate.property", "property_type_id")
     offer_ids = fields.One2many("estate.offer", "property_type")
-    offer_count = fields.Float(compute="_compute_offer_count")
+    offer_count = fields.Integer(compute="_compute_offer_count")
+
+    ## Contabilizar quantidade de offers para a type
 
     @api.depends("offer_ids")
     def _compute_offer_count(self):
         for rec in self:
-            rec.offer_count = rec.offer_ids.price
+            cnt = 0
+            for x in rec.offer_ids:
+                cnt = cnt + 1
+            rec.offer_count = cnt
 
-
+    ## record.offer_count = len(record.mapped("offer_ids"))
   

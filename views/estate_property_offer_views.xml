@@ -1,5 +1,14 @@
 <?xml version="1.0"?>
 <odoo>
+
+ <record id="property_offer_action" model="ir.actions.act_window">
+        <field name="name">Property Type</field>
+        <field name="res_model">estate.offer</field>
+        <field name="view_mode">tree,form</field>
+       
+</record>
+
+
  <record id="estate_offer_view_tree" model="ir.ui.view">
         <field name="name">Tree View Test</field>
         <field name="model">estate.offer</field>

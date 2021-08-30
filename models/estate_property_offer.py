@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from odoo.exceptions import UserError
 from odoo import api, models,fields
 
 class EstatePropertyOffer(models.Model):
@@ -46,7 +47,19 @@ class EstatePropertyOffer(models.Model):
     def action_refuse_offer(self):
         for rec in self:
             rec.status = 'refused'
-        
         return True
+
+    @api.model
+    def create(self,vals):
+        ppt = self.env['estate.property'].browse(vals['property_id'])
+        ppt.state = 'offer_received'
+        newoff = super().create(vals)
+        if newoff.price<ppt.best_price:
+            raise UserError('You cannot create an offer with a lower amount than an existing offer')
+        return newoff
+            
+        
+                
+
         
     
