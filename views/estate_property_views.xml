@@ -43,8 +43,8 @@
         <field name="arch" type="xml">
             <form string="Estate">
                 <header>
-                  <button states='new,canceled,offer_accepted' name="action_cancel_property" type="object" string="Cancel"/>
-                  <button states="new" name="action_sell_property" type="object" string="Sold"/>
+                  <button states='new,canceled' name="action_cancel_property" type="object" string="Cancel"/>
+                  <button states="new,offer_accepted" name="action_sell_property" type="object" string="Sold"/>
                   <field widget="statusbar"  name="state"/>
                 </header>
                 <sheet>

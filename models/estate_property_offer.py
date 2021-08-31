@@ -40,6 +40,7 @@ class EstatePropertyOffer(models.Model):
         for rec in self:
             rec.status = 'accepted'
             rec.property_id.selling_price=rec.price
+            rec.property_id.state='offer_accepted'
         return True
 
     ## Ação de negação da offer
