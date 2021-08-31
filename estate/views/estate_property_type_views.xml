@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+    <record id="property_type_action" model="ir.actions.act_window">
+        <field name="name">Property Type</field>
+        <field name="res_model">estate.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+ <record id="estate_type_view_tree" model="ir.ui.view">
+        <field name="name">Tree View Test</field>
+        <field name="model">estate.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="name"/>
+            </tree>
+        </field>
+</record>
+
+    <record id="estate_type_view_form" model="ir.ui.view">  
+        <field name="name">giropops</field>
+        <field name="model">estate.type</field>
+        <field name="arch" type="xml">
+            <form string="Estate Offers">
+                <sheet>
+                    <div class="oe_button_box">
+                        <button name="%(estate.property_offer_action)d" type="action" icon="fa-money" class="oe_stat_button oe_read_only">
+                            <field name="offer_count" widget="statinfo"/>
+                          
+                        </button>
+                    </div>
+                    <field name="property_ids"/>   
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  
+
+</odoo>
