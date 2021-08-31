@@ -9,9 +9,9 @@
         <field name="arch" type="xml">
             <page name="references" position="after">
                 <page name="realproperties" string="Real Estate Properties">
-               <group>
+          
                  <field name="property_ids"/>
-               </group>
+              
                 
                 </page>
             </page>

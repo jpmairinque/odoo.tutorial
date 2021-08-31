@@ -15,7 +15,7 @@
             Some examples of lost reasons: "We don't have people/skill", "Price too high"
           </p>
         </field>
-</record>
+ </record>
 
  <record id="view_account_estate_kanban" model="ir.ui.view">
             <field name="name">Properties</field>
@@ -46,7 +46,6 @@
                               </div>
 
                               <field name="tag_ids"/>
-
                           </div>
                          </t>
                     </templates>
@@ -72,7 +71,7 @@
                 <field name="state"/>
             </tree>
         </field>
-</record>
+ </record>
 
  <record id="estate_view_form" model="ir.ui.view">
         <field name="name">crm.lost.reason.form</field>
@@ -80,60 +79,59 @@
         <field name="arch" type="xml">
             <form string="Estate">
                 <header>
-                  <button states='new,canceled' name="action_cancel_property" type="object" string="Cancel"/>
+                  <button states='new' name="action_cancel_property" type="object" string="Cancel"/>
                   <button states="new,offer_accepted" name="action_sell_property" type="object" string="Sold"/>
                   <field widget="statusbar"  name="state"/>
                 </header>
                 <sheet>
-                  <div class="oe_title">
-                    <h1 class="mb32">
-                        <field name="name" class="mb16"/>
-                    </h1>                  
-                </div>
-                <group>
+                    <div class="oe_title">
+                      <h1 class="mb32">
+                          <field name="name" class="mb16"/>
+                      </h1>                  
+                    </div>
                   <group>
-                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>                    
-                    <field name="postcode"/>
-                    <field name="date_avaliability"/>
+                    <group>
+                      <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>                    
+                      <field name="postcode"/>
+                      <field name="date_avaliability"/>
+                    </group>
+                    <group>
+                      <field name="expected_price"/>
+                      <field name="selling_price"/>
+                    </group>
                   </group>
-                  <group>
-                    <field name="expected_price"/>
-                    <field name="selling_price"/>
-                  </group>
-                </group>
-                  <notebook>
-                    <page string="Description">
-                      <group>
+                    <notebook>
+                      <page string="Description">
                         <group>
-                          <field name="description"/>
-                          <field name="bedrooms"/>
-                          <field name="living_area"/>
-                          <field name="facades"/>
-                          <field name="garage"/>
-                          <field name="garden"/>
+                          <group>
+                            <field name="description"/>
+                            <field name="bedrooms"/>
+                            <field name="living_area"/>
+                            <field name="facades"/>
+                            <field name="garage"/>
+                            <field name="garden"/>
+                          </group>
+                          <group>
+                            <field attrs="{'invisible':[('garden','=',False)]}"  name="garden_area"/>
+                            <field attrs="{'invisible':[('garden','=',False)]}" name="garden_orientation"/>
+                            <field name="property_type_id"/>
+                            <field name="buyer"/>
+                            <field name="salesperson"/>
+                            <field name="total_area"/>
+                            <field name="best_price"/>
+                          </group>
                         </group>
-                        <group>
-                          <field attrs="{'invisible':[('garden','=',False)]}"  name="garden_area"/>
-                          <field attrs="{'invisible':[('garden','=',False)]}" name="garden_orientation"/>
-                          <field name="property_type_id"/>
-                          <field name="buyer"/>
-                          <field name="salesperson"/>
-                          <field name="total_area"/>
-                          <field name="best_price"/>
-                        </group>
-                      </group>
-                    </page>
+                      </page>
                       <page string="Offers">
                         <field name="offer_ids"/>
                       </page>
-                  </notebook>
-                  
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="estate_view_search" model="ir.ui.view">
+  <record id="estate_view_search" model="ir.ui.view">
       <field name="name">Estate Search</field>
       <field name="model">estate.property</field>
       <field name="arch" type="xml">
@@ -145,12 +143,10 @@
               <field  filter_domain="[('living_area', '>=', self)]" name="living_area"/>
               <field name="facades"/>
               <field name="tag_ids" widget="many2many_tags"/>
-              
-          <filter name="available" string="Available" domain="['|',('state', '=', 'new'),('state', '=', 'offer_received')]"/>
-           
-          <group expand="1" string="Group By">
-            <filter string="Postcode" name="postcode" context="{'group_by':'postcode'}"/>
-        </group>
+              <filter name="available" string="Available" domain="['|',('state', '=', 'new'),('state', '=', 'offer_received')]"/>
+            <group expand="1" string="Group By">
+              <filter string="Postcode" name="postcode" context="{'group_by':'postcode'}"/>
+            </group>
           </search>
       </field>
   </record>

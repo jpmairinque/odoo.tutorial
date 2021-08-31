@@ -40,6 +40,7 @@ class EstatePropertyOffer(models.Model):
         for rec in self:
             rec.status = 'accepted'
             rec.property_id.selling_price=rec.price
+            rec.property_id.buyer=rec.partner_id
             rec.property_id.state='offer_accepted'
         return True
 
@@ -55,10 +56,15 @@ class EstatePropertyOffer(models.Model):
     @api.model
     def create(self,vals):
         ppt = self.env['estate.property'].browse(vals['property_id'])
-        ppt.state = 'offer_received'
         newoff = super().create(vals)
         if newoff.price<ppt.best_price:
             raise UserError('You cannot create an offer with a lower amount than an existing offer')
+
+        if ppt.state == 'sold':
+            raise UserError('You cannot create an offer to a sold property')
+        else: 
+            ppt.state = 'offer_received'       
+        
         return newoff
             
         

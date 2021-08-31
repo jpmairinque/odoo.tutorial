@@ -90,7 +90,9 @@ class EstateProperty(models.Model):
             if rec.state == 'canceled':
                 raise UserError("A canceled property can not be sold")
             else:
-                rec.state = 'sold'
+                if not rec.buyer.id:
+                    raise UserError("A property without a buyer can not be sold")
+                else: rec.state = 'sold'
         
         return True
 
