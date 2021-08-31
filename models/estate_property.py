@@ -61,6 +61,7 @@ class EstateProperty(models.Model):
             rec.best_price = best
             
  
+    ## Automatização dos fields relacionados à garden
            
     @api.onchange("garden")
     def _onchange_garden(self):
@@ -102,6 +103,8 @@ class EstateProperty(models.Model):
                 if rec.selling_price<(0.9*rec.expected_price):
                     raise ValidationError("The selling price cannot be lower than 90 percent of the expected price")
    
+   ## Overwriting da ação de unlink
+
     def unlink(self):
         for rec in self:
             if rec.state!='new' or rec.state!='canceled':

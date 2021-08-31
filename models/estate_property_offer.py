@@ -50,6 +50,8 @@ class EstatePropertyOffer(models.Model):
             rec.status = 'refused'
         return True
 
+    ## Overwriting da ação de criação
+    
     @api.model
     def create(self,vals):
         ppt = self.env['estate.property'].browse(vals['property_id'])
