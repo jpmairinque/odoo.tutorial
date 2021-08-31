@@ -1,2 +1,2 @@
 # odoo.tutorial
-Module built for Odoo's training tutorial
+Modules built for Odoo's training tutorial
