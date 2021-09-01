@@ -53,6 +53,7 @@
             </field>
         </record>
 
+
  <record id="estate_view_tree" model="ir.ui.view">
         <field name="name">Properties</field>
         <field name="model">estate.property</field>
@@ -123,7 +124,8 @@
                         </group>
                       </page>
                       <page string="Offers">
-                        <field name="offer_ids"/>
+                        <field name="state" invisible="1"/>
+                        <field name="offer_ids" attrs="{'readonly': [('state', '=', 'offer_accepted')]}"/>
                       </page>
                     </notebook>
                 </sheet>
