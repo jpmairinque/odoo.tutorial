@@ -1,4 +1,4 @@
-# Real Estate - Odoo Tutorial
+# Real Estate - Odoo Tutorial 🏠📉
 ERP Modules built for **Odoo 14** [training tutorial](https://www.odoo.com/documentation/14.0/developer/howtos/rdtraining.html) // *Modulos construídos no tutorial de treinamento do Odoo*
 
 With Real Estate, you can add proprerties that need to be sold, and coordenate the whole bussiness process envolved. Sign up buyer's offers, add specific tags/types and organize all the prices included! 
